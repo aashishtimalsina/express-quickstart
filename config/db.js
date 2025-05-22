@@ -4,19 +4,19 @@ const MONGODB_URI = process.env.MONGODB_URI;
 
 const connectDB = async () => {
   try {
+    console.log("Attempting to connect to MongoDB...");
+    // Set mongoose options
+    mongoose.set('strictQuery', false);
+    
     const conn = await mongoose.connect(MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      retryWrites: true,
-      ssl: true,
-      // Relaxed SSL settings for troubleshooting
-      tlsInsecure: true,
-      tlsAllowInvalidCertificates: true,
-      tlsAllowInvalidHostnames: true,
-      // Connection timeout settings
-      serverSelectionTimeoutMS: 30000,
-      socketTimeoutMS: 45000,
-      connectTimeoutMS: 30000,
+      // Explicitly force IPv4
+      family: 4,
+      // Increased timeouts for cloud environment
+      serverSelectionTimeoutMS: 60000,
+      socketTimeoutMS: 60000,
+      connectTimeoutMS: 60000,
     });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
     return conn;
