@@ -6,8 +6,8 @@ const connectDB = async () => {
   try {
     console.log("Attempting to connect to MongoDB...");
     // Set mongoose options
-    mongoose.set('strictQuery', false);
-    
+    mongoose.set("strictQuery", false);
+
     const conn = await mongoose.connect(MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,

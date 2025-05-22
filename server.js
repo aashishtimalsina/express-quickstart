@@ -15,8 +15,11 @@ app.use(express.json());
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  if (req.method === 'OPTIONS') {
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
   next();
@@ -46,7 +49,7 @@ const maxAttempts = 3;
 function attemptConnection() {
   connectionAttempts++;
   console.log(`Connection attempt ${connectionAttempts} of ${maxAttempts}`);
-  
+
   connectDB()
     .then((connection) => {
       if (connection) {
@@ -68,7 +71,9 @@ function retryConnection() {
     console.log(`Retrying connection in 5 seconds...`);
     setTimeout(attemptConnection, 5000);
   } else {
-    console.log("All connection attempts failed, starting server without database connection");
+    console.log(
+      "All connection attempts failed, starting server without database connection"
+    );
   }
 }
 
