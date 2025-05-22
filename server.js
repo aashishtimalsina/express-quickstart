@@ -1,10 +1,10 @@
-require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./swagger/swaggerConfig");
 const userRoutes = require("./routes/user");
 const authRoutes = require("./routes/auth");
+require("dotenv").config();
 
 const app = express();
 app.use(express.json());
