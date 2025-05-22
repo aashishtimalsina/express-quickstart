@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
-const { verifyToken } = require("../middleware/auth"); // Add this line to import the middleware
+const { verifyToken } = require("../middleware/auth");
 
 /**
  * @swagger

@@ -2,6 +2,7 @@ const express = require("express");
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./swagger/swaggerConfig");
 const userRoutes = require("./routes/user");
+const blogRoutes = require("./routes/blog");
 const authRoutes = require("./routes/auth");
 const { connectDB } = require("./config/db");
 require("dotenv").config();
@@ -71,6 +72,7 @@ const dbCheckMiddleware = (req, res, next) => {
 
 app.use("/api/users", dbCheckMiddleware, userRoutes);
 app.use("/api/auth", dbCheckMiddleware, authRoutes);
+app.use("/api/blogs", dbCheckMiddleware, blogRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
